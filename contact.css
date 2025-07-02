@@ -1,0 +1,81 @@
+/* #region Body */
+h2 {
+    padding: 0 5em;
+    margin: 40px auto;
+}
+/* #endregion */
+
+/* #region Contact form */
+.contact-form {
+    border-radius: 2px;
+    padding: 1px 25px 25px 25px;
+    background-color: #f3e9dc;
+    max-width: 600px;
+    margin: 15px auto;
+    margin-bottom: 5em;
+  }
+  
+  .form-field {
+    position: relative;
+    margin: 32px 0;
+  }
+  
+  /* Input & Textarea shared styles */
+  .input-text {
+    width: 100%;
+    padding: 12px 0 8px 0;
+    border: none;
+    border-bottom: 2px solid #000;
+    font-family: 'Lusitana', serif;
+    font-size: 18px;
+    line-height: 26px;
+    background: transparent;
+    resize: none;
+    outline: none;
+  }
+  
+  /* Adjust textarea height manually if needed */
+  .textarea-text {
+    min-height: 100px;
+    line-height: 1.5;
+  }
+  
+  /* Label */
+  .label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-family: 'Lusitana', serif;
+    font-size: 18px;
+    color: #888;
+    pointer-events: none;
+    transition: 0.2s ease all;
+  }
+  
+  /* Label floats on focus or when input has content */
+  .input-text:focus + .label,
+  .input-text:not(:placeholder-shown) + .label {
+    top: -16px;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    background-color: #333;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #00aaff;
+  }
+  
+
+/* #endregion */

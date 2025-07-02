@@ -1,0 +1,25 @@
+.project {
+    padding: 2.5em 5em 0 5em;
+}
+
+.project .tags {
+    padding-bottom: 2em;
+}
+
+.project-title {
+    display: flex;
+    justify-content: space-between
+}
+
+.github-link {
+    margin-top: 2em;
+    height: 1em;
+    text-align: center;
+    line-height: 1em;
+    float: right;
+    border-radius: 2px;
+    background-color: #00aaff;
+    padding: 0.5em;
+    text-decoration: none;
+    color: black;
+}

@@ -46,3 +46,10 @@
     text-decoration: none; 
     border-radius: 5px;
 }
+
+#yt-video {
+    margin-top: 1em;
+    margin-left: 10%;
+    width: 80%;
+    aspect-ratio: 16 / 9;
+}

@@ -7,6 +7,57 @@
     <link rel="stylesheet" href="/assets/css/contact.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>Saul Harwin - Contact</title>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+                publicKey: "ZRIxTjxzYJfAo4HpV",
+            });
+        })();
+    </script>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            const form = document.getElementById('contact-form');
+            const sendButton = form.querySelector('button[type="submit"]');
+            const originalText = sendButton.textContent;
+            const originalWidth = sendButton.offsetWidth + 'px';
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                sendButton.style.width = originalWidth;
+                sendButton.disabled = true;
+                sendButton.textContent = 'Sending...';
+                sendButton.className = 'sending';
+
+
+                emailjs.sendForm('service_rw0ayao', 'template_gjud3h6', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                        sendButton.textContent = 'Sent!';
+                        sendButton.className = 'sent';
+                        form.reset();
+
+                        setTimeout(() => {
+                            sendButton.textContent = 'Send Message';
+                            sendButton.className = 'ready';
+                            sendButton.disabled = false;
+                        }, 3000);
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                        sendButton.textContent = 'Failed. Try Again';
+                        sendButton.className = 'fail';
+                        sendButton.disabled = false;
+                    });
+            });
+        }
+    </script>
+
+
 </head>
 <body>
     <div class="navbar">
@@ -15,21 +66,40 @@
     </div> 
 
     <h2>Let's Connect</h2>
-    <form class="contact-form">
-        <div class="form-field">
-          <input type="text" id="name" class="input-text" placeholder=" " required>
-          <label for="name" class="label">Your Name</label>
-        </div>
-        <div class="form-field">
-          <input type="email" id="email" class="input-text" placeholder=" " required>
-          <label for="email" class="label">Your Email</label>
-        </div>
-        <div class="form-field">
-          <textarea id="message" class="input-text textarea-text" placeholder=" " rows="4" required></textarea>
-          <label for="message" class="label">Message</label>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
+    <form id="contact-form">
+      <!-- To simplify the tutorial, the value is static. -->
+      <input type="hidden" name="time" value="Mar 10 2025 08:49">
+      
+      <div class="form-field">
+        <input type="text" name="name" id="name" class="input-text" placeholder=" " required>
+        <label for="name" class="label">Your Name</label>
+      </div>
+      
+      <div class="form-field">
+        <input type="email" name="email" id="email" class="input-text" placeholder=" " required>
+        <label for="email" class="label">Your Email</label>
+      </div>
+      
+      <div class="form-field">
+        <input type="text" name="title" id="subject" class="input-text" placeholder=" " required>
+        <label for="subject" class="label">Subject</label>
+      </div>
+      
+      <div class="form-field">
+        <textarea name="message" id="message" class="input-text textarea-text" placeholder=" " rows="4" required></textarea>
+        <label for="message" class="label">Message</label>
+      </div>
+
+      <button type="submit" value="Send" class="ready" id="submit-btn">Send Message</button>
     </form>
+
+
+
+
+
+    
+    </body>
+    </html>
   
 
     <footer class="site-footer">

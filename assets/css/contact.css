@@ -6,7 +6,7 @@ h2 {
 /* #endregion */
 
 /* #region Contact form */
-.contact-form {
+#contact-form {
     border-radius: 2px;
     padding: 1px 25px 25px 25px;
     background-color: #f3e9dc;
@@ -61,8 +61,7 @@ h2 {
   }
   
   /* Submit Button */
-  .submit-btn {
-    background-color: #333;
+  #submit-btn {
     color: #fff;
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
@@ -72,9 +71,36 @@ h2 {
     border: none;
     cursor: pointer;
   }
-  
-  .submit-btn:hover {
+
+  .ready {
+    background-color: #333;
+  }
+
+  .ready:hover {
     background-color: #00aaff;
+  }
+
+  .sending {
+    background-color: #cccccc;
+    color: #333;
+  }
+
+  .sent {
+    background-color: #00cc66;
+    color: white;
+  }
+
+  .sent:hover {
+      background-color: #00994d;
+  }
+
+  .failed {
+      background-color: #ff4444;
+      color: white;
+  }
+
+  .failed:hover {
+      background-color: #cc0000;
   }
   
 

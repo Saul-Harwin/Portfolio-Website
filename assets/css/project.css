@@ -1,0 +1,48 @@
+.project {
+    padding: 2.5em 5em 0 5em;
+}
+
+.project .tags-wrapper {
+    margin-bottom: 2em;
+}
+
+.project .tags {
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.project-title {
+    display: flex;
+    justify-content: space-between
+}
+
+.github-link {
+    margin-top: 2em;
+    height: 1em;
+    text-align: center;
+    line-height: 1em;
+    float: right;
+    border-radius: 2px;
+    background-color: #00aaff;
+    padding: 0.5em;
+    text-decoration: none;
+    color: white;
+}
+
+.project p {
+    margin-top: 0;
+}
+
+.project h3 {
+    margin-bottom: 0;
+}
+
+.view-report-button {
+    margin-top: 2em;
+    display: inline-block; 
+    padding: 10px 15px; 
+    background-color: #00aaff; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px;
+}

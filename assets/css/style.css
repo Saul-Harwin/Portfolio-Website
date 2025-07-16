@@ -23,6 +23,7 @@ body {
 }
 
 .navbar .nav-name {
+    margin-right: auto;
     font-size: 1.4em;
     font-weight: bolder;
     padding: 0.2em 16px 0.2em 16px;

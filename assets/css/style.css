@@ -98,7 +98,21 @@ body {
 }
 
 @media (max-width: 525px) {
+    .name > p {
+        padding: 0 10% 0 10% ;
+        width: 80%;
+        margin: 0.2em;
+        font-size: 0.8em;
+    }
+
+    #page-section {
+        padding: 1em;
+        width: calc(100% - 2em);
+        padding-bottom: 0;
+    }
+
     .thumbnail {
+        margin-bottom: 2em;
         width: 100%;
     }
 }

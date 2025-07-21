@@ -16,9 +16,11 @@ body {
 /* Add a black background color to the top navigation */
 .navbar {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: #333;
     overflow: hidden;
+    /* padding-top: 0.2em; */
     padding: 0.5em;
 }
 
@@ -26,13 +28,14 @@ body {
     margin-right: auto;
     font-size: 1.4em;
     font-weight: bolder;
-    padding: 0.2em 16px 0.2em 16px;
+    /* padding: 0.2em 16px 0.2em 16px; */
     margin-left: 20px;
 }
 
 /* Style the links inside the navigation bar */
 .navbar a {
-    line-height: 1em;
+    vertical-align: middle;
+    line-height: 1.5em;
     margin: 0 10px 0 10px;
     float: left;
     color: #f2f2f2;
@@ -40,8 +43,15 @@ body {
     padding: 0.4em 16px;
     text-decoration: none;
     font-size: 1em;
+    gap: 15px;
+    padding: 0;
+    margin: 0 5px 0 5px;
 }
   
+.navbar .cv {
+    margin-right: 15px;
+}
+
 /* Change the color of links on hover */
 .navbar a:hover {
     border-radius: 2px;
@@ -49,6 +59,13 @@ body {
     color: black;
 }
 
+@media (max-width: 524px) {
+    .navbar a {
+        gap: 15px;
+        padding: 0;
+        margin: 0 5px 0 5px;
+    }
+}
 /* #endregion */
 
 /* #region Title Name Section */

@@ -59,6 +59,33 @@
     aspect-ratio: 16 / 9;
 }
 
+#image {
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    margin-top: 1em;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.image-row {
+    display: flex;
+    gap: 10px;        /* space between images */
+    justify-content: space-around; /* center them */
+}
+
+#example-email {
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    margin-top: 1em;
+
+    width: 45%;      
+    height: auto;
+}
+
 /* @media (max-width: 1200px) {
     
 } */

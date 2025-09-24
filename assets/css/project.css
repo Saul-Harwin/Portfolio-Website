@@ -61,7 +61,7 @@
 
 #image {
     border: solid;
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.1);
     border-width: 2px;
     border-radius: 4px;
     margin-top: 1em;
@@ -77,7 +77,7 @@
 
 #example-email {
     border: solid;
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.1);
     border-width: 2px;
     border-radius: 4px;
     margin-top: 1em;

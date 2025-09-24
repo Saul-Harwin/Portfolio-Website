@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/project.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Saul Harwin - Portfolio Website</title>
+</head>
+<body>
+    <div class="navbar">
+      <a class="nav-name" href="/index.html">Saul Harwin</a>
+      <a href="/docs/CV - Saul Harwin.pdf" class="cv">CV</a>
+      <a href="/contact.html">Get in Touch</a>
+    </div> 
+
+    <div class="project">
+        <div class="project-title">
+            <h1>Portfolio Website</h1>
+            <a class="github-link" href="https://github.com/Saul-Harwin/Portfolio-Website">GitHub Link</a>
+        </div>
+        <div class="tags-wrapper">
+          <div class="tags">
+            <p id="tag">HTML</p>
+            <p id="tag">CSS</p>
+            <p id="tag">Web Development</p>
+          </div>
+        </div>
+
+        <p>This is my personal portfolio website, built to showcase my projects, skills, and experience in a clean, professional format. The site is designed with simplicity and responsiveness in mind, making it easy for employers and collaborators to quickly learn about my work.</p>
+
+        <h3>Goals and Motivations</h3>
+        <ul>
+          <li>Provide a central hub for my projects, resume, and contact information.</li>
+          <li>Create a professional online presence that reflects my style and skills.</li>
+          <li>Prioritize performance, responsive design, and accessibility.</li>
+          <li>Gain hands-on experience in deploying and maintaining a live website.</li>
+        </ul>
+
+        <h3>Features</h3>
+        <ul>
+          <li>NodeJS Server using pm2</li>
+          <li>Responsive website that adapts seamlessly to mobile, tablet and desktop</li>
+          <li>Project Cards with hover effects and a horizontal scrolling flex container containing tag</li>
+          <li>Minimal design system with consistent typography and spacing.</li>
+          <li>Contact form that uses EmailJS to send and email with forms content to me.</li>
+          <li>Easily accessible links to both my LinkedIn and Github profile with Github link for each of the projects.</li>
+        </ul>
+
+        <h3>Deployment Setup</h3>
+        <p>I built my portfolio website using pure HTML and CSS for the front end. To serve the site, I set up a lightweight Node.js server, which handles delivering the static files to visitors. I manage the Node process with PM2, which ensures the server stays online, restarts automatically if it crashes, and runs in the background after reboots.</p>
+        <p>The application is deployed on a DigitalOcean droplet, where PM2 keeps the Node server running continuously. This setup gives me full control over the hosting environment while keeping the deployment simple and reliable.</p>
+        <p>To streamline updates, I configured a cron job to run every 30 minutes. This job pulls the latest code from the main branch on GitHub. With PM2’s file-watching enabled on the server directory, the application automatically reloads whenever new changes are detected.</p>
+
+        <h4>Advantages to my Setup</h4>
+        <ul>
+          <li>Continuous deployment with minimal manual intervention</li>
+          <li>Automatic recovery and uptime monitoring via PM2</li>
+          <li>A lightweight, cost-effective hosting solution on DigitalOcean</li>
+        </ul>
+
+        <h3>Home Page</h3>
+        <p>The Home page serves as the entry point to the portfolio website. It introduces visitors to who I am, highlights my skills at a glance, and provides quick access to the main sections of the site. A clean navigation bar allows users to explore projects, my CV, and contact information.</p>
+        <p>The About section provides a brief overview of my background, interests, and goals as a developer. It is kept concise, highlighting my academic and professional journey and the skills I have gained, along with a headshot, so the readers quickly understand who I am.</p>
+        <img id="image" src="/assets/images/portfolio-website-thumbnail.png" alt="Home page of website">
+        <h3>Projects Section</h3>
+        <p>This section presents the projects I have completed in an  visually accesable form and allows the reader to quickly identify the skills gained from the project with the tags bar.</p>
+        <img id="image" src="/assets/images/portfolio-website-projects.png " alt="Contacts page of website">
+        <h3>Project Page</h3>
+        <p>Each project page includes tags, as found on the project cards, which highlight the key skills and technologies used, a link to its GitHub page, and a detailed description of the project, including its goals and motivations.</p>
+        <img id="image" src="/assets/images/portfolio-website-projects-page.png " alt="Contacts page of website">
+        <h3>Contacts Section</h3>
+        <p>Allows the user to quickly get in touch with me through my contact form which uses EmailJS to send and email from my email to me with the froms contents.</p>
+        <div class="image-row">
+          <img id="example-email" src="/assets/images/portfolio-website-contact.png " alt="Contacts page of website">
+          <img id="example-email" src="/assets/images/example-email.png" alt="Example Email">
+        </div>
+      </div>
+
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-about">
+            <h3>Saul Harwin</h3>
+            <p>BSc Physics graduate passionate about software engineering, driven by curiosity and innovative problem solving.</p>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:saulharwin@gmail.com">saulharwin@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/Saul-Harwin" target="_blank">github.com/Saul-Harwin</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/saulharwin/">Saul Harwin</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Saul Harwin. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

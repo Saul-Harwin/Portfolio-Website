@@ -70,6 +70,17 @@
     width: 50%;
 }
 
+#monthly-spotify-playlist-display {
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 2px;
+    border-radius: 4px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 10%;
+    width: 80%;
+}
+
 .image-row {
     width: 100%;
     display: flex;

@@ -97,10 +97,14 @@ body {
     object-fit: cover;
     object-position: top;
     float: left;           /* floats image to the left */
-    margin: 20px 20px 0 0; /* space on right and bottom for text */
+    margin: 0 20px 0 0; /* space on right and bottom for text */
     border-radius: 0;      /* square corners */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     aspect-ratio: 1 / 1; /* forces square ratio */
+}
+
+#about-me {
+    margin-top: 0;
 }
 
 @media (max-width: 1200px) {
@@ -340,3 +344,111 @@ body {
     font-size: 14px;
   }
 /* #endregion */
+
+/* #region Timeline */
+/* timeline container */
+/* Timeline grid */
+.timeline {
+    display: grid;
+    grid-template-columns: auto 48px 1fr;
+    row-gap: 64px;
+    position: relative;
+}
+
+#timeline {
+    margin-bottom: 0;
+}
+
+#last_updated {
+    margin: 0;
+    padding-top: 0;
+    font-size: 14px;
+    margin-bottom: 5%;
+}
+
+/* Date column */
+.date {
+    text-align: right;
+    font-size: 14px;
+    align-self: center;
+}
+
+/* Axis column */
+.axis {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* Vertical line */
+.axis::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    bottom: calc(-50% - 1px);
+    width: 3px;
+    background: #000;
+}
+
+.axis#first-child::before {
+    top: 50%;
+}
+
+.axis#last-child::before {
+    bottom: 50%;
+}
+
+/* Dot */
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #5a2dff;
+    border-radius: 50%;
+    z-index: 1;
+    position: relative;
+    top: calc(50% - 6px);
+}
+
+/* Card */
+.card {
+    display: flex;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    /* height: fit-content; */
+}
+
+.card-content {
+    /* height: fit-content; */
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin: 0 0 10px 0;
+}
+
+.card-content p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Responsive collapse */
+/* @media (max-width: 910px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card-thumbnail {
+        width: 100%;
+    }
+}
+*/
+
+
+@media (max-width: 768px) {
+    .card-thumbnail {
+        width: 0;
+    }
+}
+
+

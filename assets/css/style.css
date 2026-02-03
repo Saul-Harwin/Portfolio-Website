@@ -97,10 +97,14 @@ body {
     object-fit: cover;
     object-position: top;
     float: left;           /* floats image to the left */
-    margin: 20px 20px 0 0; /* space on right and bottom for text */
+    margin: 0 20px 0 0; /* space on right and bottom for text */
     border-radius: 0;      /* square corners */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     aspect-ratio: 1 / 1; /* forces square ratio */
+}
+
+#about-me {
+    margin-top: 0;
 }
 
 @media (max-width: 1200px) {
@@ -349,6 +353,17 @@ body {
     grid-template-columns: auto 48px 1fr;
     row-gap: 64px;
     position: relative;
+}
+
+#timeline {
+    margin-bottom: 0;
+}
+
+#last_updated {
+    margin: 0;
+    padding-top: 0;
+    font-size: 14px;
+    margin-bottom: 5%;
 }
 
 /* Date column */

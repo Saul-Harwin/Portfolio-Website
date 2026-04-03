@@ -177,3 +177,34 @@
         font-size: 1.8em;
     }
 }
+
+.three_figure {
+    width: 100%;
+    height: auto;
+    width: 90%;
+    max-width: 1200px;         /* control figure size */
+}
+
+.two_figure {
+    width: 100%;
+    height: auto;
+    width: 45%;
+    min-width: 400px;         /* control figure size */
+    /* add break point to stack them ontop of each other 1600px */
+}
+
+.one_figure {
+    width: 100%;
+    height: auto;
+    width: 45%;
+    max-width: 500px;
+}
+
+.results-images {
+  row-gap: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* center horizontally */
+  align-items: center;
+  gap: 16px;                 /* spacing between images */
+}

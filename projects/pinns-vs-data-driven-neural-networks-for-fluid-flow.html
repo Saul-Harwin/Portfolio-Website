@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/project.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Saul Harwin - PINNs vs Data Driven Neural Networks for Fluid Flow</title>
+</head>
+<body>
+    <div class="navbar">
+        <a class="nav-name" href="/index.html">Saul Harwin</a>
+        <a href="/docs/CV - Saul Harwin.pdf" class="cv">CV</a>
+        <a href="/contact.html">Get in Touch</a>
+    </div> 
+
+    <div class="project">
+      <div class="project-title">
+          <h1>PINNs vs Data Driven Neural Networks for Fluid Flow</h1>
+          <a class="github-link" href="https://github.com/Saul-Harwin/PINNs-vs-Data-Driven-Neural-Networks-for-Fluid-Flow">GitHub Link</a>
+      </div>
+      <div class="tags-wrapper">
+        <div class="tags">
+          <p id="tag">Data Visualisation</p>
+          <p id="tag">Python</p>
+        </div>
+      </div>
+
+      <h3>Objective</h3>
+        <p>The objective of this project is to investigate whether incorporating physical constraints improves prediction accuracy when training data is sparse. I investigated this because it was close to a realistic scenario where we might be looking at such as sewer flow with a limited number of sensors.</p>
+
+      <h3>Governing Equation (Fluid Flow)</h3>
+        <p>We use a simplified 1D flow equation, the advection-diffusion equation:</p>
+        <h3>
+            \[
+            \frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x}
+= D \frac{\partial^2 u}{\partial x^2}
+            \]
+        </h3>
+        <p>Meaning of each term:</p>
+        <ul>
+            <li><strong>\(u(x,t)\)</strong>: transported scalar field (e.g., pollutant concentration, chlorine level, temperature)</li>
+            <li><strong>\(c\)</strong>: advection velocity (flow speed of the water)</li>
+            <li><strong>\(D\)</strong>: diffusion coefficient (mixing/dispersion)</li>
+            <li><strong>\( \frac{\partial u}{\partial t} \)</strong>: rate of change of concentration over time</li>
+            <li><strong>\( c \frac{\partial u}{\partial x} \)</strong>: transport due to bulk flow of the fluid</li>
+            <li><strong>\( D \frac{\partial^2 u}{\partial x^2} \)</strong>: spreading due to diffusion or turbulent mixing</li>
+        </ul>
+
+      <h3>Two Models to Compare</h3>
+
+        <h4>Model 1 - Standard Neural Network</h4>
+          <p>Train a neural network to learn using only data points with a loss function of:</p>
+          <h3>\[ \frac{1}{N} \sum({u_{pred} - u_{data}})^2 \]</h3>
+
+        <h4>Model 2 - Physics-Informed Neural Network</h4>
+          <p>Use the same network but including physics in the loss function.</p>
+          <p>Physics residual:</p>
+          <h3>\[  f(x, t) = \frac{du}{dt} + c \frac{du}{dx} - D \frac{du^2}{d^2x} \]</h3>
+          <p>Physics loss:</p>
+          <h3>\[ L_{physics} = \frac{1}{N_f} \sum_{i=1}^{N_f}{|f(x_i, t_i)|^2} \]</h3>
+          <p>Total loss:</p>
+          <h3>\[ L = L_{data} + \lambda \times L_{physics}, \] </h3> 
+          <p>where \( \lambda \) controls the weight of the physics constraint.</p>
+
+      <h3>Initial and Boundary Conditions</h3>
+        <p>Initial condition: Gaussian pulse:</p>
+        <p>\(  u(x, 0) = e^{-50(x-0.5)^2} \)</p>
+        <p>This can represent a localised pollutant spill at the centre of the river, diffusion spreads the plume, and advection moves it downstream. 
+
+The advantages of this are: that it is a smooth function, produces easily interpretable results, widely used in transport modelling.</p>
+
+      <h3>Exact Solution</h3>
+        <h3>\[ u(x,t) = \frac{1}{\sqrt{1+200 D t}} e^{- \frac{50(x-ct-0.5)^2}{1+200 D t}} \]</h3>
+      
+
+        
+        <h3>Results</h3>
+        
+        <p>
+          Six figures are used to evaluate the performance of the standard neural network (NN) and the
+          physics-informed neural network (PINN). The comparison focuses on prediction accuracy,
+          training behaviour, and satisfaction of the governing advection–diffusion equation.
+        </p>
+        
+        <h4>Prediction Accuracy</h4>
+        
+
+        <div class="results-images">
+          <img class="three_figure" src="../assets/images/nn_evaluation.png" alt="Figure 1">
+          <img class="three_figure" src="../assets/images/pinn_evaluation.png" alt="Figure 2">
+        </div>
+        
+        <p>
+          Figures 1 and 2 compare the predictive performance of the standard neural network (NN) and the
+          physics-informed neural network (PINN). Figure 1 presents the exact analytical solution alongside
+          the NN prediction and its corresponding error. While the NN captures the overall structure of the
+          transported Gaussian pulse, noticeable deviations from the exact solution appear, particularly in
+          regions where training data are sparse. Figure 2 shows the same comparison for the PINN, including
+          the exact solution, the PINN prediction, and the resulting error field. The PINN more accurately
+          reproduces the transported and diffused pulse and exhibits substantially smaller prediction errors
+          across the spatial domain.
+        </p>
+        
+        <h4>Training Dynamics</h4>
+        <div class="results-images">
+          <img class="two_figure" src="../assets/images/nn_losses_evaluation.png" alt="">
+          <img class="two_figure" src="../assets/images/pinn_losses_evaluation.png" alt="">
+        </div>
+        
+        <p>
+          A comparison of the training behaviour highlights clear differences between the two models. 
+          Figure 3 illustrates the training dynamics of the standard neural network, showing the evolution 
+          of the training loss together with the relative prediction error during optimization. Although 
+          the loss decreases gradually, the prediction error remains relatively large throughout training, 
+          indicating limited generalization when the available data are sparse. In contrast, Figure 4 
+          shows the training curves for the physics-informed neural network, including the data loss, 
+          physics residual loss, and prediction error. The inclusion of the physics constraint leads to 
+          more stable convergence and a lower final prediction error compared with the standard neural network.
+        </p>
+        
+        <h4>PDE Residual Analysis</h4>
+        
+        <div class="results-images">
+          <img class="one_figure" src="../assets/images/nn_residual.png" alt="">
+          <img class="one_figure" src="../assets/images/pinn_residual.png" alt="">
+        </div>
+
+        <p>
+          If we compare the PDE residuals of the two models, clear differences emerge. Figure 5 shows the logarithm of the residual evaluated across the domain for the standard neural network, which produces a relatively large average residual of \(1.43 \times 10^{-1}\). This indicates that the NN solution does not strongly satisfy the governing advection–diffusion equation. In contrast, Figure 6 presents the residual for the physics-informed neural network, which yields a much smaller average residual of \(1.24 \times 10^{-3}\). The substantially lower residual demonstrates that the PINN solution adheres far more closely to the governing physical equation across the domain.
+        </p>
+
+      <h3>Tools & Skills</h3>
+        <ul>
+            <li>Programming: R</li>
+            <li>Techniques: Monte Carlo Simulation, Importance Sampling, Markov Chains, Random Walks</li>
+            <li>Mathematics: Probability Theory, Stochastic Processes, Numerical Analysis</li>
+            <li>Validation: Kolmogorov-Smirnov Test, Error Metrics</li>
+        </ul>
+
+      <p>
+          <a class="view-report-button" href="/assets/pdf/Monte_Carlo_Dissertation.pdf"  target="_blank" rel="noopener noreferrer">
+            View Full Report
+          </a>
+      </p>
+        
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-about">
+            <h3>Saul Harwin</h3>
+            <p>BSc Physics graduate passionate about software engineering, driven by curiosity and innovative problem solving.</p>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:saulharwin@gmail.com">saulharwin@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/Saul-Harwin" target="_blank">github.com/Saul-Harwin</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/saulharwin/">Saul Harwin</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Saul Harwin. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -23,10 +23,30 @@
       </div>
       <div class="tags-wrapper">
         <div class="tags">
-          <p id="tag">Data Visualisation</p>
           <p id="tag">Python</p>
+          <p id="tag">Machine Learning</p>
+          <p id="tag">Physics-Informed Neural Networks</p>
+          <p id="tag">Computational Fluid Dynamics</p>
+          <p id="tag">PDE Modeling</p>
+          <p id="tag">Numerical Methods</p>
+          <p id="tag">Data-Driven Modeling</p>
+          <p id="tag">Scientific Computing</p>
+          <p id="tag">Deep Learning</p>
+          <p id="tag">Data Visualization</p>
         </div>
       </div>
+
+      <!-- <h3>Project Overview</h3> -->
+
+      <p>This project investigates whether incorporating physical laws into neural networks improves prediction accuracy when training data are sparse. I implemented and compared two models for solving a simplified 1D advection-diffusion equation, which describes the transport and diffusion of a scalar quantity such as pollutant concentration in flowing water.</p>
+      
+      <p class="points-heading">Summary</p>
+      <ul class="points">
+        <li>Implemented and compared a standard neural network and a Physics-Informed Neural Network (PINN).</li>
+        <li>Both models attempt to learn solutions to the 1D advection-diffusion equation.</li>
+        <li>Evaluated model accuracy and adherence to the governing physical law.</li>
+        <li>PINNs demonstrated strong adherence to the physical constraints and better generalization with sparse training data, while the standard NN slightly outperformed on the denser dataset but showed potential overfitting.</li>
+      </ul>
 
       <h3>Objective</h3>
         <p>The objective of this project is to investigate whether incorporating physical constraints improves prediction accuracy when training data is sparse. I investigated this because it was close to a realistic scenario where we might be looking at such as sewer flow with a limited number of sensors.</p>
@@ -39,8 +59,8 @@
 = D \frac{\partial^2 u}{\partial x^2}
             \]
         </h3>
-        <p>Meaning of each term:</p>
-        <ul>
+        <p class="points-heading">Meaning of each term:</p>
+        <ul class="points">
             <li><strong>\(u(x,t)\)</strong>: transported scalar field (e.g., pollutant concentration, chlorine level, temperature)</li>
             <li><strong>\(c\)</strong>: advection velocity (flow speed of the water)</li>
             <li><strong>\(D\)</strong>: diffusion coefficient (mixing/dispersion)</li>
@@ -66,8 +86,8 @@
           <p>where \( \lambda \) controls the weight of the physics constraint.</p>
 
       <h3>Initial and Boundary Conditions</h3>
-        <p>Initial condition: Gaussian pulse:</p>
-        <p>\(  u(x, 0) = e^{-50(x-0.5)^2} \)</p>
+        <p>Initial condition - Gaussian pulse:</p>
+        <p>\[  u(x, 0) = e^{-50(x-0.5)^2} \]</p>
         <p>This can represent a localised pollutant spill at the centre of the river, diffusion spreads the plume, and advection moves it downstream. 
 
 The advantages of this are: that it is a smooth function, produces easily interpretable results, widely used in transport modelling.</p>
@@ -82,70 +102,98 @@ The advantages of this are: that it is a smooth function, produces easily interp
         <p>
           Six figures are used to evaluate the performance of the standard neural network (NN) and the
           physics-informed neural network (PINN). The comparison focuses on prediction accuracy,
-          training behaviour, and satisfaction of the governing advection–diffusion equation.
+          training behaviour, and satisfaction of the governing advection-diffusion equation.
         </p>
         
         <h4>Prediction Accuracy</h4>
-        
-
         <div class="results-images">
-          <img class="three_figure" src="../assets/images/nn_evaluation.png" alt="Figure 1">
-          <img class="three_figure" src="../assets/images/pinn_evaluation.png" alt="Figure 2">
+            <figure>
+                <img class="three_figure" src="../assets/images/nn_evaluation.png" alt="NN prediction vs exact solution">
+                <figcaption>Figure 1: Standard Neural Network prediction and error</figcaption>
+            </figure>
+            <figure>
+                <img class="three_figure" src="../assets/images/pinn_evaluation.png" alt="PINN prediction vs exact solution">
+                <figcaption>Figure 2: Physics-Informed Neural Network prediction and error</figcaption>
+            </figure>
         </div>
         
         <p>
-          Figures 1 and 2 compare the predictive performance of the standard neural network (NN) and the
-          physics-informed neural network (PINN). Figure 1 presents the exact analytical solution alongside
-          the NN prediction and its corresponding error. While the NN captures the overall structure of the
-          transported Gaussian pulse, noticeable deviations from the exact solution appear, particularly in
-          regions where training data are sparse. Figure 2 shows the same comparison for the PINN, including
-          the exact solution, the PINN prediction, and the resulting error field. The PINN more accurately
-          reproduces the transported and diffused pulse and exhibits substantially smaller prediction errors
-          across the spatial domain.
+          Figures 1 and 2 compare the predictive performance of the standard neural network (NN) and the physics-informed neural network (PINN) with the input data for each model overlayed on the Predicted error plot. 
+          Figure 1 shows the NN prediction alongside the exact analytical solution and its corresponding error. Because the NN was trained on more data points, 
+          it achieves a slightly lower relative L2 error on the test grid (\(4.104 \times 10^{-2}\)) compared with the PINN \((5.860 \times 10^{-2}\)). However, the NN’s predictions 
+          deviate noticeably from the exact solution in regions with sparse data, suggesting potential overfitting to the provided dataset. Figure 2 shows the 
+          PINN results, which, although slightly higher in relative L2 error, more accurately reproduce the transported Gaussian pulse across the full spatial 
+          domain and maintain consistency with the governing advection-diffusion equation.
         </p>
         
         <h4>Training Dynamics</h4>
         <div class="results-images">
-          <img class="two_figure" src="../assets/images/nn_losses_evaluation.png" alt="">
-          <img class="two_figure" src="../assets/images/pinn_losses_evaluation.png" alt="">
+            <figure>
+                <img class="two_figure" src="../assets/images/nn_losses_evaluation.png" alt="NN training loss and prediction error">
+                <figcaption>Figure 3: Training dynamics of the standard neural network</figcaption>
+            </figure>
+            <figure>
+                <img class="two_figure" src="../assets/images/pinn_losses_evaluation.png" alt="PINN training loss and prediction error">
+                <figcaption>Figure 4: Training dynamics of the physics-informed neural network</figcaption>
+            </figure>
         </div>
+
         
         <p>
-          A comparison of the training behaviour highlights clear differences between the two models. 
-          Figure 3 illustrates the training dynamics of the standard neural network, showing the evolution 
-          of the training loss together with the relative prediction error during optimization. Although 
-          the loss decreases gradually, the prediction error remains relatively large throughout training, 
-          indicating limited generalization when the available data are sparse. In contrast, Figure 4 
-          shows the training curves for the physics-informed neural network, including the data loss, 
-          physics residual loss, and prediction error. The inclusion of the physics constraint leads to 
-          more stable convergence and a lower final prediction error compared with the standard neural network.
+          A comparison of the training behaviour highlights differences between the two models. Figure 3 shows the training dynamics of the standard neural network, which was 
+          trained on \(200\) observation points. The NN achieves a slightly lower relative L2 error on the test grid \((4.104 \times 10^{-2}\)) compared with the PINN \((5.8597 \times 10^{-2}\)), but the prediction error 
+          fluctuates more during training and may indicate overfitting to the dense training data. Figure 4 presents the physics-informed neural network, trained on only 
+          \(20\) observation points, including the data loss, physics residual loss, and prediction error. Despite the smaller dataset, the PINN converges more stably and 
+          maintains consistency with the governing PDE, demonstrating better generalization and adherence to physical laws across the domain, even with fewer training points.
         </p>
         
         <h4>PDE Residual Analysis</h4>
-        
         <div class="results-images">
-          <img class="one_figure" src="../assets/images/nn_residual.png" alt="">
-          <img class="one_figure" src="../assets/images/pinn_residual.png" alt="">
+            <figure>
+                <img class="one_figure" src="../assets/images/nn_residual.png" alt="NN PDE residual">
+                <figcaption>Figure 5: PDE residual of the standard neural network</figcaption>
+            </figure>
+            <figure>
+                <img class="one_figure" src="../assets/images/pinn_residual.png" alt="PINN PDE residual">
+                <figcaption>Figure 6: PDE residual of the physics-informed neural network</figcaption>
+            </figure>
         </div>
 
         <p>
-          If we compare the PDE residuals of the two models, clear differences emerge. Figure 5 shows the logarithm of the residual evaluated across the domain for the standard neural network, which produces a relatively large average residual of \(1.43 \times 10^{-1}\). This indicates that the NN solution does not strongly satisfy the governing advection–diffusion equation. In contrast, Figure 6 presents the residual for the physics-informed neural network, which yields a much smaller average residual of \(1.24 \times 10^{-3}\). The substantially lower residual demonstrates that the PINN solution adheres far more closely to the governing physical equation across the domain.
+          Comparing the PDE residuals of the two models highlights substantial differences in physical consistency. Figure 5 shows the logarithm of the residual across the domain for the standard neural 
+          network, which produces a large average PDE residual on the test grid of \(1.4344 \times 10^{-1}\), indicating limited adherence to the governing advection-diffusion equation. In contrast, Figure 6 shows 
+          the physics-informed neural network, which achieves a much smaller average PDE residual of \(1.2427 \times 10^{-3}\) on the test grid. This significantly lower residual demonstrates that the PINN solution 
+          closely satisfies the physical law across the domain, even though it was trained on far fewer observation points.
         </p>
+
+      <h3>Conclusion</h3>
+      <p>
+        This study demonstrates the comparative strengths of standard neural networks (NNs) and physics-informed neural networks (PINNs) for modeling 1D advection-diffusion processes with limited data. While the NN, 
+        trained on 200 observation points, achieves a slightly lower relative L2 error on the test grid \((4.104 \times 10^{-2}\)) compared with the PINN, which was trained on only 20 points \((5.8597 \times 10^{-2}\)), 
+        this improvement appears to result from overfitting to the dense training data rather than true physical generalization. The PINN, despite having fewer training points, more accurately reproduces the Gaussian 
+        pulse across the spatial domain and maintains consistency with the governing advection-diffusion equation.
+      </p>
+
+      <p>
+        Analysis of training dynamics shows that the NN exhibits larger fluctuations in prediction error during optimization, suggesting sensitivity to the specific training set. In contrast, the PINN demonstrates 
+        stable convergence, effectively balancing the data-driven loss with the physics-informed residual. This is further reflected in the PDE residual analysis: the NN produces a large average residual on the 
+        test grid (\(1.4344 \times 10^{-1}\)), indicating weak adherence to the physical law, whereas the PINN achieves a substantially lower residual \(1.2427 \times 10^{-3}\)), confirming strong consistency with the governing 
+        equation even with limited observations.
+      </p>
+
+      <p>
+        Overall, these results highlight the value of incorporating physical constraints into neural network training. PINNs provide robust predictions and respect the underlying PDE, making them particularly suitable 
+        for scenarios with sparse or incomplete data, while standard NNs may perform well on the observed dataset but risk overfitting and reduced generalization beyond the training points. This demonstrates that 
+        physics-informed approaches can improve reliability and interpretability in computational fluid dynamics modeling.
+      </p>
 
       <h3>Tools & Skills</h3>
         <ul>
-            <li>Programming: R</li>
-            <li>Techniques: Monte Carlo Simulation, Importance Sampling, Markov Chains, Random Walks</li>
-            <li>Mathematics: Probability Theory, Stochastic Processes, Numerical Analysis</li>
-            <li>Validation: Kolmogorov-Smirnov Test, Error Metrics</li>
+          <li>Programming: Python</li>
+          <li>Techniques: Standard Neural Networks, Physics-Informed Neural Networks (PINNs)</li>
+          <li>Mathematics: Advection-Diffusion Equation, Gaussian Initial Condition, PDE Residuals</li>
+          <li>Validation: Comparison with exact analytical solution, error analysis, PDE residual evaluation, training loss convergence, prediction accuracy plots</li>
         </ul>
-
-      <p>
-          <a class="view-report-button" href="/assets/pdf/Monte_Carlo_Dissertation.pdf"  target="_blank" rel="noopener noreferrer">
-            View Full Report
-          </a>
-      </p>
-        
     </div>
 
     <footer class="site-footer">

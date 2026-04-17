@@ -254,7 +254,7 @@ label {
     border-collapse: separate;
     border-spacing: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: #f1f1f1;
+    background: #ffffff;;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
@@ -284,7 +284,7 @@ label {
 }
 
 .data-table tbody tr:hover {
-    background: #f1f1f1;
+    background: #ffffff;;
     transform: translateY(-1px);
 }
 
@@ -299,7 +299,7 @@ label {
     align-items: space-around;
     margin-bottom: 16px;
 
-    background: #f3e9dc;
+    background: #ffffff;;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -332,7 +332,7 @@ label {
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid #e5e7eb;
-    background: #f9fafb;
+    background: #ffffff;;
 
     font-size: 14px;
     color: #111827;
@@ -345,12 +345,12 @@ label {
 .selector select:focus {
     outline: none;
     border-color: #ddd3c7;
-    background: #f1f1f1;
+    background: #ffffff;;
     box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.12);
 }
 
 /* Hover refinement */
 .selector select:hover {
     border-color: #d1d5db;
-    background: #f1f1f1;
+    background: #ffffff;;
 }

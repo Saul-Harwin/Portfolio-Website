@@ -152,14 +152,55 @@ body {
 
 /* #region Projects Section */
 
-.flex-container {
+.projects {
     background-color: 	#f3e9dc;
     width: 90%;
     padding: 5%;
-    /* padding-bottom: 3%; */
+}
+
+.flex-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;                       
+    grid-auto-rows: max-content;
+    gap: 20px;
+    
+    overflow: hidden;
+}
+
+#toggle {
+    height: 2rem; 
+    margin-top: 2.5%;
+    padding: 0 15px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.flex-container.clamped > a:nth-child(n+7) {
+    display: none;
+}
+
+@media (max-width: 1290px) {
+    .flex-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .flex-container.clamped > a:nth-child(n+5) {
+        display: none;
+    }
+}
+
+@media (max-width: 910px) {
+    .flex-container {
+        grid-template-columns: 1fr;
+    }
+
+    .flex-container.clamped > a:nth-child(n+3) {
+        display: none;
+    }
 }
   
 @media (max-width: 1290px) {
@@ -217,7 +258,6 @@ body {
 
 .tags {
     padding: 0 15px;
-    
     height: 2rem;           
     gap: 20px;
     display: flex;

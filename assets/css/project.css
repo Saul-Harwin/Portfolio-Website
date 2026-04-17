@@ -1,5 +1,5 @@
 .project {
-    padding: 2.5em 5em 0 5em;
+    padding: 5em 15em 0 15em;
 }
 
 .project .tags-wrapper {
@@ -106,7 +106,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
     .project-title {
         font-size: 0.9em;
     }
@@ -121,7 +121,7 @@
     }
 } 
 
-@media (max-width: 700px) {
+@media (max-width: 980px) {
     .project {
         width: 90%;
         padding: 5%;
@@ -142,7 +142,7 @@
     }
 } 
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .project {
         padding: 1em;
         padding-top: 2em;
@@ -173,7 +173,7 @@
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .project-title > h1 {
         font-size: 1.8em;
     }
@@ -234,4 +234,123 @@
 
 h4 {
     margin-bottom: 0;    
+}
+
+/* F1 Api Project Page */
+.selector {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+label {
+    padding-right: 10px;
+}
+
+/* table stuffs */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f1f1f1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.data-table thead tr {
+    background: linear-gradient(90deg, #111827, #1f2937);
+}
+
+.data-table thead th {
+    color: #ffffff;
+    text-align: left;
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+}
+
+.data-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f1f1;
+    color: #111827;
+}
+
+.data-table tbody tr {
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+    background: #f1f1f1;
+    transform: translateY(-1px);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.selector {
+    /* width: 100%; */
+    display: flex;
+    gap: 16px;
+    align-items: space-around;
+    margin-bottom: 16px;
+
+    background: #f3e9dc;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Each control block */
+.selector .season,
+.selector .metric {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 180px;
+}
+
+/* Labels */
+.selector label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    letter-spacing: 0.02em;
+}
+
+/* Select inputs */
+.selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+
+    font-size: 14px;
+    color: #111827;
+
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+/* Focus state */
+.selector select:focus {
+    outline: none;
+    border-color: #ddd3c7;
+    background: #f1f1f1;
+    box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.12);
+}
+
+/* Hover refinement */
+.selector select:hover {
+    border-color: #d1d5db;
+    background: #f1f1f1;
 }

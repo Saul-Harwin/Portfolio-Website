@@ -315,6 +315,18 @@ label {
     min-width: 180px;
 }
 
+@media (max-width: 600px) {
+    .selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .selector .season,
+    .selector .metric {
+        width: calc(100% - 32px);
+    }
+}
+
 /* Labels */
 .selector label {
     font-size: 12px;

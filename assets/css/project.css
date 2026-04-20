@@ -366,3 +366,15 @@ label {
     border-color: #d1d5db;
     background: #ffffff;;
 }
+
+pre {
+    /* margin-left: 10%; */
+    border-radius: 5px;
+    /* width: 80%; */
+    background: #333;
+    font-family: monospace;
+    padding: 1.5em 1.5em;
+    display: block;
+    word-wrap: break-word;
+    overflow: auto;
+}

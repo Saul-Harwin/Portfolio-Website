@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/project.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
     <title>Saul Harwin - F1 Season Driver Analytics</title>
 </head>
 <body>
@@ -142,6 +143,91 @@
         </thead>
         <tbody id="table"></tbody>
     </table>
+
+    <h3>Fetch Data from API and Populate the Table</h3>
+    <pre class="prettyprint">
+async function load() {
+  const season = document.getElementById("season").value;
+  const metric = document.getElementById("metric").value;
+
+  const res = await fetch(`/api/season-stats?season=${season}&metric=${metric}`);
+  const data = await res.json();
+
+  document.getElementById("table").innerHTML = data.map(row => `
+    <tr>
+      <td>${row.name}</td>
+      <td>${row.races}</td>
+      <td>${row.value}</td>
+    </tr>
+  `).join('');
+}
+
+document.getElementById("season").addEventListener("change", load);
+document.getElementById("metric").addEventListener("change", load);
+
+load();
+    </pre>
+
+    <h3>Query Handler and Data Analysis</h3>
+
+    <pre class="prettyprint">
+app.get("/api/season-stats", async (req, res) => {
+  const season = parseInt(req.query.season);
+  const metric = req.query.metric;
+
+  if (!season || !metric) {
+    return res.status(400).json({ error: "season and metric required" });
+  }
+
+  try {
+    let query = "";
+
+    if (metric === "avg_position") {
+      query = `
+        SELECT
+          r.season,
+          d.name,
+          COUNT(*) AS races,
+          ROUND(AVG(res.position)::NUMERIC, 3) AS value
+        FROM results res
+        JOIN drivers d ON res.driver_id = d.driver_id
+        JOIN races r ON res.race_id = r.race_id
+        WHERE res.position IS NOT NULL
+          AND r.season = $1
+        GROUP BY r.season, d.name
+        ORDER BY value ASC;
+      `;
+    }
+
+    else if (metric === "points_per_race") {
+      query = `
+        SELECT
+          r.season,
+          d.name,
+          COUNT(*) AS races,
+          ROUND((SUM(res.points)::NUMERIC / COUNT(*)), 4) AS value
+        FROM results res
+        JOIN drivers d ON res.driver_id = d.driver_id
+        JOIN races r ON res.race_id = r.race_id
+        WHERE r.season = $1
+        GROUP BY r.season, d.name
+        ORDER BY value DESC;
+      `;
+    }
+
+    else {
+      return res.status(400).json({ error: "invalid metric" });
+    }
+
+    const result = await pool.query(query, [season]);
+    res.json(result.rows);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "database error" });
+  }
+});
+    </pre>
 
     <script>
       async function load() {
